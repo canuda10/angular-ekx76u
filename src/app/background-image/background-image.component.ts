@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
 import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
 import { trigger, transition, style, animate, AnimationEvent } from '@angular/animations';
 
@@ -17,11 +17,15 @@ const TRANSITION = 1000;
 })
 export class BackgroundImageComponent implements OnInit {
 
+  @HostBinding('style.background-image')
   style: SafeStyle;
+
+  @HostBinding('@state')
+  state: any;
 
   @Input()
   set url(value: string) {
-    this.style = this.sanitizer.bypassSecurityTrustStyle(`url("${value}")"`);
+    this.style = this.sanitizer.bypassSecurityTrustStyle(`url("${value}")`);
   }
 
   @Output()

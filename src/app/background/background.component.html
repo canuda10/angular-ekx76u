@@ -1,0 +1,5 @@
+<app-background-image
+  *ngFor="let item of urls"
+  [url]="item"
+  (imageLoaded)="onImageLoaded()"
+></app-background-image>
